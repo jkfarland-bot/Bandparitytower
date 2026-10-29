@@ -21,3 +21,4 @@ public import BandParityTower.OneMod8
 public import BandParityTower.Inversion
 public import BandParityTower.Mod8Defs
 public import BandParityTower.Mod8
+public import BandParityTower.Cycles
