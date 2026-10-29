@@ -124,3 +124,14 @@ for p in primerange(3,1500):
             d5=((5%2)+(inv(5,p)%2))%2
             if ((d5*(M(5)-Q)-4)%8==0) != ((R-Ii-2*v+8)%16==0): F('fifth4')
 print('fails:',fails)
+# Lemma 5.7 (iii) at all odd primes, with H = H_a
+fails2=0;cnt=0
+for p in primerange(3,1200):
+    a=v2(p-1); m=(p-1)>>a
+    H=[x for x in range(1,p) if pow(x,m,p)==1]
+    f=sum(s(u,p)*s(u*u,p) for u in H)
+    M=lambda aa: sum(s(u,p)*s(aa*u,p) for u in H)
+    rhs=sum(((aa%2)+(inv(aa,p)%2))%2*(M(aa)-m) for aa in H if aa!=inv(aa,p))
+    cnt+=1
+    if (2*(f-m)-rhs)%16: fails2+=1
+print('defect general:',cnt,fails2)

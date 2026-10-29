@@ -22,3 +22,5 @@ public import BandParityTower.Inversion
 public import BandParityTower.Mod8Defs
 public import BandParityTower.Mod8
 public import BandParityTower.Cycles
+public import BandParityTower.Defect
+public import BandParityTower.Fifth
