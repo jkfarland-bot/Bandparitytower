@@ -1,5 +1,10 @@
 # BandParityTower
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23752170.svg)](https://doi.org/10.5281/zenodo.23752170)
+
+Software archive: version v1.0 is [doi:10.5281/zenodo.23752171](https://doi.org/10.5281/zenodo.23752171);
+all versions are [doi:10.5281/zenodo.23752170](https://doi.org/10.5281/zenodo.23752170).
+
 Lean 4 / Mathlib formalization of the tower and the analysis modulo 8 in J. S. Farland,
 *The band-parity companion of a quartic L-value: a congruence law, its tower, and its limit
 modulo eight* (Paper I, Sections 4 and 5). It continues
