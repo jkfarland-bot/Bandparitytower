@@ -1,0 +1,232 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "BandParityTower: the band-parity tower and its limit modulo eight"
+  description: >-
+    For a prime p let a = v_2(p-1), m = (p-1)/2^a, H_a the subgroup of (Z/p)^x of order m and
+    s(x) = (-1)^<x>. The development proves the tower of band-parity laws of Paper I of the
+    author's series: the cyclotomic tower (every coordinate of the band-parity sum of the
+    character of order 2^a is congruent modulo 4 to an explicit count), the band-parity tower
+    f_a = sum over H_a of s(u) s(u^2) = m (mod 4) at every odd prime, the doubling count
+    sum over 2H_a of s(u) s(2u) = 2 N_a - m, the imaginary law e_a = 2 N_a - m (mod 4) at every
+    prime p = 1 (mod 4) with its level-3 form, the collapse e_a = +-f_a when 2 is a 2^(a-1)-th
+    power residue, and E. Lehmer's criterion for 2 to be a 2k-th power residue. It also proves the
+    power-map family, the companion law Re C = Im C = kappa (mod 4) at p = 1 (mod 8), and Lehmer-type
+    invariants of the inversion map modulo 4; and, modulo 8, the joint-parity form, the dichotomy,
+    squaring cycles and the order-three pair, the defect lemma, odd multipliers as floor sums and
+    the fifth-interval formula linking M_H(5) to B_{1,theta_p}.
+  authors:
+    - "Joseph S. Farland"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Joseph S. Farland"
+
+classification:
+  arxiv: ["math.NT"]
+  msc2020: ["11A15", "11L40", "11R29", "68V20"]
+
+sources:
+  - title: "The band-parity companion of a quartic L-value: a congruence law, its tower, and its limit modulo eight"
+    authors:
+      - "Joseph S. Farland"
+    type: "article"
+    location: "Preprint (Paper I of the author's series), 2026"
+    relationship: "formalizes"
+    note: >-
+      The paper and this formalization have the same author. Formalized: Theorems 4.1, 4.3, 4.5,
+      4.9, 4.11 and 5.9, Corollaries 4.4, 4.6 (level three), 4.7 and 5.1, Lemmas 5.2 and 5.7,
+      Propositions 5.3, 5.6 and 5.8, the case c = 2 of Proposition 3.5, and E. Lehmer's Theorem 5
+      (Remark 4.8). Not formalized: the witness Propositions 3.9 and 5.4, the observations, and the
+      classical inputs listed under status. On novelty: the residuacity half of Corollary 4.7 is
+      E. Lehmer's Theorem 5 at k = 2^(a-1), the rung a = 1 of the tower is classical (Sun 2019), and
+      the evaluation of R_5(p) in Theorem 5.9 is of classical Lerch / Johnson-Mitchell type; the
+      author found the other results nowhere in the literature searched (Hudson-Williams on
+      residuacity, Johnson-Mitchell, Girstmair, the D. H. Lehmer inverse-parity literature, Sun and
+      Petrov-Sun, sums of (k/p) floor(k^2/p)).
+    license: "CC-BY-4.0"
+    author_endorsement: "participated"
+  - title: "Generalizations of Gauss's lemma"
+    authors:
+      - "E. Lehmer"
+    type: "article"
+    location: "Number Theory and Algebra (H. Zassenhaus, ed.), Academic Press, New York, 1977, 187-194"
+    relationship: "background"
+    note: "Theorem 5 is formalized here as lehmer_theorem_five; Theorem 4 is the parity form of the doubling count."
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Quadratic residues and related permutations and identities"
+    authors:
+      - "Z.-W. Sun"
+    type: "article"
+    location: "Finite Fields Appl. 59 (2019), 246-283"
+    relationship: "background"
+    note: "Corollary 1.1 gives the classical rung a = 1 of the band-parity tower."
+    license: "unknown"
+    author_endorsement: "n/a"
+
+related_formalizations:
+  - id: "https://doi.org/10.5281/zenodo.23673067"
+    relationship: "builds-on"
+    note: "BandParity v1.0 by the same author (Theorem A, the matching lemma, Theorem B). Its files are copied here and renamed into the BandParityTower namespace."
+  - id: "https://doi.org/10.5281/zenodo.23624363"
+    relationship: "builds-on"
+    note: "KSurvey (QuarticSurvey) by the same author; its files Basic, Pin, FixedBase and CosetSums reach this repository through BandParity."
+
+status:
+  scope: >-
+    Formalized: the results listed under alignment. Not formalized: Dirichlet's identification
+    kappa = h(-4p)/2, Barkan's quarter twist (the Bernoulli form of Corollary 4.6 and of the
+    right side of Theorem 4.5), Barrucand and Cohn's criterion (the last sentence of Theorem 4.9),
+    the class-number readings of h^- and of Paper IV's thresholds in Remark 4.8, the character
+    expansion of Proposition 3.5 for general c, the witness Propositions 3.9 and 5.4, Remark 4.10
+    and the observations.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude (Anthropic)"]
+      framework: "Claude.ai with code execution"
+      tool_setup: >-
+        AI-assisted: the Lean code was drafted and repaired by Claude against the paper's
+        statements and proofs, with subagents for Theorems 4.9 and 5.9, compiled locally with
+        lake, and checked with Palomar's lake comparator script.
+      cost:
+        wall_time: "about one day"
+        spend_usd: "subscription-based"
+        hardware: "API-only plus local machine"
+      prompting_notes: "The model was given the paper's statements and proofs and asked to formalize them without sorry or native_decide."
+  spend_usd: "subscription-based"
+  notes: >-
+    The author chose the scope (Sections 4 and 5 of Paper I, including Theorem 5.9 and E. Lehmer's
+    Theorem 5 as a formalized classical input).
+
+fidelity:
+  divergences: >-
+    H_a is the finite set {x : x^m = 1} in ZMod p and cosets are images cosetOf c S; Ha_spec proves
+    that H_a has m elements and is the group of nonzero 2^a-th powers. Characters are MulChar
+    (ZMod p) GaussianInt of order 4, pinned by chi 2 = gi where needed; in Theorem 4.3 the
+    character takes values in any commutative ring with chi(g)^(2^(a-1)) = -1. kappa is the
+    Legendre sum over (0, p/4). In Lemma 5.2 and Proposition 5.3, h^- is replaced by
+    (k^2 + t^2)/2. The defect congruence counts each pair {a, a^-1} from both ends, with modulus 16,
+    and holds at every odd prime. Proposition 5.6 (1) is stated for any set permuted by squaring.
+    B_{1,theta_p} in Theorem 5.9 is thetaSum p / (5p), with the integrality proved.
+
+review:
+  status: "self-assessed"
+  reviewers:
+    - "Joseph S. Farland"
+  notes: >-
+    The definitions in Challenge.lean are copied verbatim from the development and compared by
+    Comparator. The statements were checked against the paper by an independent AI review. No
+    external referee has reviewed the paper or the formalization.
+
+alignment:
+  namespace: "BandParityTower"
+  statements:
+    - source: "Section 3.3, H_a and the 2^a-th and 2^(a-1)-th power residues"
+      lean: "BandParityTower.Ha_spec"
+      module: "Challenge"
+      status: "proved"
+    - source: "Theorem 4.3, the cyclotomic tower"
+      lean: "BandParityTower.cyclotomic_tower"
+      module: "Challenge"
+      status: "proved"
+      note: "Values in any commutative ring with chi(g)^(2^(a-1)) = -1; the basis property of 1, zeta, ... is not formalized."
+    - source: "Corollary 4.4, the band-parity tower"
+      lean: "BandParityTower.band_parity_tower"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 3.5 at c = 2, the doubling count"
+      lean: "BandParityTower.doubling_count"
+      module: "Challenge"
+      status: "proved"
+      note: "Proved by a direct count; the character expansion of Proposition 3.5 for general c is not formalized."
+    - source: "Theorem 4.5, the imaginary coordinate at every level"
+      lean: "BandParityTower.imaginary_law"
+      module: "Challenge"
+      status: "proved"
+    - source: "Corollary 4.6, the level a = 3"
+      lean: "BandParityTower.imaginary_law_three"
+      module: "Challenge"
+      status: "proved"
+    - source: "Corollary 4.7, the collapse"
+      lean: "BandParityTower.collapse_criterion"
+      module: "Challenge"
+      status: "proved"
+    - source: "Remark 4.8; E. Lehmer (1977), Theorem 5"
+      lean: "BandParityTower.lehmer_theorem_five"
+      module: "Challenge"
+      status: "proved"
+      note: "Classical input, formalized; its case k = 2 is the criterion of Williams and Currie."
+    - source: "Theorem 4.1, the power-map family"
+      lean: "BandParityTower.power_map_family"
+      module: "Challenge"
+      status: "proved"
+    - source: "Theorem 4.9, the companion law at p = 1 (mod 8)"
+      lean: "BandParityTower.companion_law_one_mod_eight"
+      module: "Challenge"
+      status: "proved"
+    - source: "Theorem 4.11, Lehmer-type invariants"
+      lean: "BandParityTower.lehmer_invariants"
+      module: "Challenge"
+      status: "proved"
+    - source: "Corollary 5.1, the joint-parity form"
+      lean: "BandParityTower.joint_parity_form"
+      module: "Challenge"
+      status: "proved"
+    - source: "Lemma 5.2"
+      lean: "BandParityTower.hminus_mod_eight"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 5.3, the mod-8 dichotomy"
+      lean: "BandParityTower.mod_eight_dichotomy"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 5.6 (1), squaring cycles"
+      lean: "BandParityTower.squaring_cycles"
+      module: "Challenge"
+      status: "proved"
+      note: "Stated for any finite set on which squaring is a bijection."
+    - source: "Proposition 5.6 (2), the cycle of a cube root of unity"
+      lean: "BandParityTower.cube_root_cycle"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 5.3, e as a cross-correlation over H"
+      lean: "BandParityTower.e_as_correlation"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 5.6 (3), the order-three pair in e"
+      lean: "BandParityTower.order_three_pair"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 5.4, f = f_2 at p = 5 (mod 8)"
+      lean: "BandParityTower.real_part_eq_fTower"
+      module: "Challenge"
+      status: "proved"
+    - source: "Lemma 5.7, M_H(a) = Q - 4 alpha + 4 C(a)"
+      lean: "BandParityTower.multiplier_identity"
+      module: "Challenge"
+      status: "proved"
+    - source: "Lemma 5.7, sum of C(a) = alpha^2"
+      lean: "BandParityTower.multiplier_count_sum"
+      module: "Challenge"
+      status: "proved"
+    - source: "Lemma 5.7, the defect congruence"
+      lean: "BandParityTower.defect_congruence"
+      module: "Challenge"
+      status: "proved"
+      note: "Pairs {a, a^-1} are counted from both ends and the modulus doubled to 16; proved at every odd prime with m in place of Q."
+    - source: "Proposition 5.8, odd multipliers are floor sums"
+      lean: "BandParityTower.odd_multipliers"
+      module: "Challenge"
+      status: "proved"
+    - source: "Theorem 5.9, the fifth-interval formula"
+      lean: "BandParityTower.fifth_interval_formula"
+      module: "Challenge"
+      status: "proved"
+
+acknowledgements: "Lean 4 and Mathlib; Claude (Anthropic) for formalization assistance; the Palomar starter template for the check scripts."
