@@ -29,6 +29,7 @@ lemma sign_prod_exact {a b : ℤ} (ha : a = 1 ∨ a = -1) (hb : b = 1 ∨ b = -1
       4 * (if a = -1 ∧ b = -1 then 1 else 0) := by
   rcases ha with rfl | rfl <;> rcases hb with rfl | rfl <;> norm_num
 
+omit hp in
 lemma parSign_eq_neg_one_iff (x : ZMod p) : parSign x = -1 ↔ Odd x.val := by
   unfold parSign
   rcases Nat.even_or_odd x.val with h | h

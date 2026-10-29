@@ -26,15 +26,18 @@ open Finset
 
 variable {p : ℕ} [hp : Fact p.Prime]
 
+omit hp in
 lemma oddInd_eq (x : ZMod p) : oddInd x = 0 ∨ oddInd x = 1 := by
   unfold oddInd; split_ifs <;> simp
 
+omit hp in
 lemma parSign_eq_oddInd (x : ZMod p) : parSign x = 1 - 2 * oddInd x := by
   unfold parSign oddInd
   rcases Nat.even_or_odd x.val with h | h
   · rw [h.neg_one_pow, ite_eq_right (Nat.not_odd_iff_even.2 h)]; ring
   · rw [h.neg_one_pow, ite_eq_left h]; ring
 
+omit hp in
 lemma oddCountZ_eq_sum (S : Finset (ZMod p)) : (oddCountZ S : ℤ) = ∑ u ∈ S, oddInd u := by
   unfold oddCountZ oddInd; rw [sum_boole]
 

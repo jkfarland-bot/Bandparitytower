@@ -84,6 +84,7 @@ lemma val_one_add {x : ZMod p} (hx : x ≠ -1) : (1 + x).val = x.val + 1 := by
   rw [show 1 + x = ((x.val + 1 : ℕ) : ZMod p) by push_cast; rw [ZMod.natCast_zmod_val]; ring,
     ZMod.val_natCast_of_lt hlt]
 
+omit hp in
 lemma parSign_eq_ite (x : ZMod p) : parSign x = if x.val % 2 = 0 then 1 else -1 := by
   unfold parSign
   rcases Nat.even_or_odd x.val with h | h

@@ -161,7 +161,7 @@ lemma sum_J_2H (hp5 : 5 < p) : ∑ x ∈ cosetOf 2 (Ha p), Jsign x = -(k χ + 2 
 omit hp8 hχ hpin in
 /-- `∏_{x ∈ H} s(x⁻¹) = ∏_{x ∈ H} s(x)`. -/
 lemma prod_inv_H : ∏ x ∈ Ha p, parSign x⁻¹ = ∏ x ∈ Ha p, parSign x :=
-  prod_nbij (fun x => x⁻¹) (fun x hx => inv_mem_Ha hx) (fun x _ y _ h => inv_injective h)
+  prod_nbij (fun x => x⁻¹) (fun _ hx => inv_mem_Ha hx) (fun _ _ _ _ h => inv_injective h)
     (fun y hy => ⟨y⁻¹, mem_coe.2 (inv_mem_Ha (mem_coe.1 hy)), inv_inv y⟩) (fun _ _ => rfl)
 
 /-- `∏_{x ∈ 2H} s(x⁻¹) = -∏_{x ∈ 2H} s(x)`. -/
@@ -186,7 +186,7 @@ lemma prod_inv_2H : ∏ x ∈ cosetOf 2 (Ha p), parSign x⁻¹ = -∏ x ∈ cose
       by simp⟩) (fun _ _ => rfl)
 
 /-- The four classes of a nonzero residue. -/
-lemma classes {n : ZMod p} (hn : n ≠ 0) :
+lemma classes {n : ZMod p} (_hn : n ≠ 0) :
     (χ n = 1 ↔ n ∈ Ha p) ∧ (χ n = -1 ↔ -n ∈ Ha p) ∧ (χ n = gi ↔ n ∈ cosetOf 2 (Ha p)) ∧
       (χ n = -gi ↔ -n ∈ cosetOf 2 (Ha p)) := by
   have hodd := quartic_apply_neg_one χ hχ hp8
@@ -200,6 +200,7 @@ lemma classes {n : ZMod p} (hn : n ≠ 0) :
   · rw [← h2, char_neg hodd]; exact ⟨fun h => by rw [h, neg_neg], fun h => by
       rw [← neg_neg (χ n), h]⟩
 
+omit hp8 hχ hpin in
 /-- The coset form of `Re 𝓛` and `Im 𝓛` over a coset `X ∈ {H, 2H}`. -/
 lemma sum_half_inv (hp2 : p ≠ 2) {c : ZMod p} (hc : c ≠ 0) (f : ZMod p → ℤ)
     (hf : ∀ n, n ≠ 0 → f n = if n ∈ cosetOf c (Ha p) then 1 else if -n ∈ cosetOf c (Ha p) then -1
@@ -228,7 +229,7 @@ lemma sum_half_inv (hp2 : p ≠ 2) {c : ZMod p} (hc : c ≠ 0) (f : ZMod p → �
     · rw [neg_zero] at h; exact hX0 h
   rw [hf n hn0]
   by_cases h : n ∈ X
-  · rw [ite_eq_left h, ite_eq_left h, Jsign_low hp2 hn'.1]; try ring
+  · rw [ite_eq_left h, ite_eq_left h, Jsign_low hp2 hn'.1]
   · have h' := hn'.2.resolve_left h
     rw [ite_eq_right h, ite_eq_left h', ite_eq_right h, Jsign_neg hp2 hn0, Jsign_low hp2 hn'.1, inv_neg,
       parSign_neg hp2 hn0, parSign_neg hp2 (inv_ne_zero hn0)]
@@ -282,7 +283,7 @@ theorem lehmer_invariants' (hp8 : p % 8 = 5) (hp5 : 5 < p) {χ : MulChar (ZMod p
       ∑ x ∈ H, Jsign x * (parSign x * parSign x⁻¹) := by
     rw [re_sum]
     simp only [hterm, re_mul_int]
-    refine (sum_half_inv hp8 hχ hpin hp2 one_ne_zero (fun n => (χ n).re) (fun n hn => ?_)
+    refine (sum_half_inv hp2 one_ne_zero (fun n => (χ n).re) (fun n hn => ?_)
       (by simp [MulChar.map_zero])).trans (by rw [cosetOf_one])
     rw [cosetOf_one]
     obtain ⟨c1, c2, c3, c4⟩ := classes hp8 hχ hpin hn
@@ -301,7 +302,7 @@ theorem lehmer_invariants' (hp8 : p % 8 = 5) (hp5 : 5 < p) {χ : MulChar (ZMod p
       ∑ x ∈ H2, Jsign x * (parSign x * parSign x⁻¹) := by
     rw [im_sum]
     simp only [hterm, im_mul_int]
-    refine sum_half_inv hp8 hχ hpin hp2 h20 (fun n => (χ n).im) (fun n hn => ?_)
+    refine sum_half_inv hp2 h20 (fun n => (χ n).im) (fun n hn => ?_)
       (by simp [MulChar.map_zero])
     obtain ⟨c1, c2, c3, c4⟩ := classes hp8 hχ hpin hn
     rcases quartic_values χ hχ hn with h | h | h | h
