@@ -141,6 +141,7 @@ lemma oddInd_one (_hp2 : p ≠ 2) : oddInd (1 : ZMod p) = 1 := by
     exact ZMod.val_one p
   rw [this]; simp
 
+omit hp in
 lemma defect_eq (x : ZMod p) :
     defect x = oddInd x + oddInd x⁻¹ - 2 * (oddInd x * oddInd x⁻¹) := by
   unfold defect
