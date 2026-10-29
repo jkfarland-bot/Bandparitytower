@@ -16,3 +16,4 @@ public import BandParityTower.Tower
 public import BandParityTower.Lehmer
 public import BandParityTower.Quartic
 public import BandParityTower.Cyclo
+public import BandParityTower.PowerMap
