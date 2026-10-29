@@ -159,11 +159,11 @@ lemma neg_not_mem_coset (hp2 : p ≠ 2) {c : ZMod p} (hc : c ≠ 0) {x : ZMod p}
   rw [mul_neg, neg_mul, mul_inv_cancel₀ hx0] at this
   exact neg_one_not_mem_Ha hp2 this
 
-lemma card_coset {c : ZMod p} (hc : c ≠ 0) : (cosetOf c (Ha p)).card = oddPart p := by
+lemma card_coset_Ha {c : ZMod p} (hc : c ≠ 0) : (cosetOf c (Ha p)).card = oddPart p := by
   rw [card_cosetOf hc, card_Ha]
 
 /-- Fibres of `u ↦ u^e` on a coset of `H_a` have `gcd(m, e)` elements. -/
-lemma card_fibre {c : ZMod p} (hc : c ≠ 0) (e : ℕ) {u₀ : ZMod p}
+lemma card_fibre_Ha {c : ZMod p} (hc : c ≠ 0) (e : ℕ) {u₀ : ZMod p}
     (hu₀ : u₀ ∈ cosetOf c (Ha p)) :
     ((cosetOf c (Ha p)).filter (fun u => u ^ e = u₀ ^ e)).card = Nat.gcd (oddPart p) e := by
   have hu0 : u₀ ≠ 0 := ne_zero_of_mem_coset hc hu₀
@@ -195,7 +195,7 @@ lemma card_fibre {c : ZMod p} (hc : c ≠ 0) (e : ℕ) {u₀ : ZMod p}
   · intro u _; simp only; rw [← mul_assoc, mul_inv_cancel₀ hu0, one_mul]
   · intro k _; simp only; rw [← mul_assoc, inv_mul_cancel₀ hu0, one_mul]
 
-lemma card_filter_pow {c : ZMod p} (hc : c ≠ 0) (e : ℕ) (P : ZMod p → Prop) [DecidablePred P] :
+lemma card_filter_pow_Ha {c : ZMod p} (hc : c ≠ 0) (e : ℕ) (P : ZMod p → Prop) [DecidablePred P] :
     ((cosetOf c (Ha p)).filter (fun u => P (u ^ e))).card =
       Nat.gcd (oddPart p) e * (((cosetOf c (Ha p)).image (· ^ e)).filter P).card := by
   rw [card_eq_sum_card_fiberwise (f := (· ^ e))
@@ -207,7 +207,7 @@ lemma card_filter_pow {c : ZMod p} (hc : c ≠ 0) (e : ℕ) (P : ZMod p → Prop
   intro y hy
   simp only [mem_filter, mem_image] at hy
   obtain ⟨⟨u₀, hu₀, rfl⟩, hP⟩ := hy
-  rw [← card_fibre hc e hu₀, filter_filter]
+  rw [← card_fibre_Ha hc e hu₀, filter_filter]
   congr 1; ext u
   simp only [mem_filter]
   constructor
@@ -243,11 +243,11 @@ theorem sum_coset_pow_modEq {c : ZMod p} (hc : c ≠ 0) (e : ℕ) :
       rcases Nat.even_or_odd (u ^ e).val with h | h
       · rw [h.neg_one_pow, ite_eq_right (Nat.not_odd_iff_even.2 h)]; ring
       · rw [h.neg_one_pow, ite_eq_left h]; ring
-    have hcf := card_filter_pow hc e (fun y : ZMod p => Odd y.val)
+    have hcf := card_filter_pow_Ha hc e (fun y : ZMod p => Odd y.val)
     rw [sum_congr rfl (fun u _ => this u), sum_sub_distrib, ← mul_sum, sum_boole, oddCountZ]
     simp only [sum_const, nsmul_eq_mul, mul_one]
     rw [hcf]; push_cast; ring
-  rw [h1, h2, card_coset hc] at hm
+  rw [h1, h2, card_coset_Ha hc] at hm
   refine hm.trans ?_
   obtain ⟨q, hq⟩ := (oddPart_odd (prime_two_le (p := p))).of_dvd_nat (Nat.gcd_dvd_left _ e)
   rw [hq]

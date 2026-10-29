@@ -73,13 +73,13 @@ lemma sq_bijOn_coset (hp2 : p ≠ 2) {c : ZMod p} (hc : c ≠ 0) :
     Set.BijOn (fun x : ZMod p => x ^ 2) (cosetOf c (Ha p) : Set (ZMod p))
       (cosetOf (c ^ 2) (Ha p) : Set (ZMod p)) :=
   bijOn_of_injOn_card (sq_mapsTo_coset hc) (sq_injOn_coset hp2 hc)
-    (by rw [card_coset hc, card_coset (pow_ne_zero 2 hc)])
+    (by rw [card_coset_Ha hc, card_coset_Ha (pow_ne_zero 2 hc)])
 
 lemma mul_bijOn_coset {c d : ZMod p} (hc : c ≠ 0) (hd : d ≠ 0) :
     Set.BijOn (fun x : ZMod p => d * x) (cosetOf c (Ha p) : Set (ZMod p))
       (cosetOf (d * c) (Ha p) : Set (ZMod p)) := by
   refine bijOn_of_injOn_card ?_ (fun x _ y _ h => mul_left_cancel₀ hd h)
-    (by rw [card_coset hc, card_coset (mul_ne_zero hd hc)])
+    (by rw [card_coset_Ha hc, card_coset_Ha (mul_ne_zero hd hc)])
   intro x hx
   rw [mem_coe, mem_cosetOf hc] at hx
   rw [mem_coe, mem_cosetOf (mul_ne_zero hd hc)]
@@ -152,7 +152,7 @@ theorem lag_two (hp4 : p % 4 = 1) :
   have hcard : rep.card = oddPart p := by
     have := sum_eq_sum_half_pair hp2 X hX0 hdisj (fun _ => (1 : ℕ))
     simp only [sum_const, smul_eq_mul, mul_one, ite_self] at this
-    rw [← this, card_coset h20]
+    rw [← this, card_coset_Ha h20]
   -- the even representatives are the doubles of the counted residues
   have heven : (rep.filter fun n => ¬ Odd n.val).card = Na p := by
     unfold Na powResCount
