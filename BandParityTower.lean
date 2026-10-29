@@ -17,3 +17,6 @@ public import BandParityTower.Lehmer
 public import BandParityTower.Quartic
 public import BandParityTower.Cyclo
 public import BandParityTower.PowerMap
+public import BandParityTower.OneMod8
+public import BandParityTower.Inversion
+public import BandParityTower.Mod8Defs
