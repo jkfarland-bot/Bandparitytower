@@ -13,6 +13,11 @@ modulo eight* (Paper I, Sections 4 and 5). It continues
 Theorem A, the matching lemma, the lag identity at level 4, the Coordinate Congruence and the
 odd-subgroup congruence (Theorem B).
 
+The companion paper is J. S. Farland, *The band-parity tower and its limit modulo eight,
+formalized in Lean* (preprint, Zenodo, 2026; v1.0
+[doi:10.5281/zenodo.23752473](https://doi.org/10.5281/zenodo.23752473), all versions
+[doi:10.5281/zenodo.23752472](https://doi.org/10.5281/zenodo.23752472)).
+
 For a prime `p` write `a = v₂(p - 1)`, `m = (p - 1)/2^a`, `H_a` for the subgroup of `(ℤ/p)ˣ` of
 order `m`, `s(x) = (-1)^⟨x⟩`, and
 

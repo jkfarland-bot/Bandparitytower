@@ -17,3 +17,14 @@ keywords:
   - Lean 4
   - Mathlib
   - formal verification
+preferred-citation:
+  type: article
+  title: "The band-parity tower and its limit modulo eight, formalized in Lean"
+  authors:
+    - family-names: Farland
+      given-names: Joseph S.
+  year: 2026
+  doi: 10.5281/zenodo.23752472
+  publisher:
+    name: Zenodo
+  notes: "Preprint, version v1.0: doi:10.5281/zenodo.23752473"
