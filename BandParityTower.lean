@@ -14,3 +14,5 @@ public import BandParityTower.Group
 public import BandParityTower.Half
 public import BandParityTower.Tower
 public import BandParityTower.Lehmer
+public import BandParityTower.Quartic
+public import BandParityTower.Cyclo
