@@ -24,3 +24,4 @@ public import BandParityTower.Mod8
 public import BandParityTower.Cycles
 public import BandParityTower.Defect
 public import BandParityTower.Fifth
+public import BandParityTower.Extras

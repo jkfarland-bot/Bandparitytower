@@ -35,8 +35,8 @@ sources:
     relationship: "formalizes"
     note: >-
       The paper and this formalization have the same author. Formalized: Theorems 4.1, 4.3, 4.5,
-      4.9, 4.11 and 5.9, Corollaries 4.4, 4.6 (level three), 4.7 and 5.1, Lemmas 5.2 and 5.7,
-      Propositions 5.3, 5.6 and 5.8, the case c = 2 of Proposition 3.5, and E. Lehmer's Theorem 5
+      4.9, 4.11 and 5.9, Corollaries 4.4, 4.6, 4.7 and 5.1, Lemmas 5.2 and 5.7,
+      Propositions 5.3, 5.6 and 5.8, Proposition 3.5 at c = 2 and at p = 5 (mod 8), and E. Lehmer's Theorem 5
       (Remark 4.8). Not formalized: the witness Propositions 3.9 and 5.4, the observations, and the
       classical inputs listed under status. On novelty: the residuacity half of Corollary 4.7 is
       E. Lehmer's Theorem 5 at k = 2^(a-1), the rung a = 1 of the tower is classical (Sun 2019), and
@@ -79,8 +79,8 @@ status:
     kappa = h(-4p)/2, Barkan's quarter twist (the Bernoulli form of Corollary 4.6 and of the
     right side of Theorem 4.5), Barrucand and Cohn's criterion (the last sentence of Theorem 4.9),
     the class-number readings of h^- and of Paper IV's thresholds in Remark 4.8, the character
-    expansion of Proposition 3.5 for general c, the witness Propositions 3.9 and 5.4, Remark 4.10
-    and the observations.
+    expansion of Proposition 3.5 for general c, the witness Propositions 3.9 and 5.4, the side claims
+    of Remarks 4.2, 4.10, 5.10 and 5.11, and the observations.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: []
@@ -121,7 +121,9 @@ review:
     - "Joseph S. Farland"
   notes: >-
     The definitions in Challenge.lean are copied verbatim from the development and compared by
-    Comparator. The statements were checked against the paper by an independent AI review. No
+    Comparator. The statements were checked against the paper by an independent AI review, which
+    found no mismatch; its suggested additions (level two, Proposition 3.5 at p = 5 (mod 8),
+    squaring on H_a, the exactness of the coset sums) are included. No
     external referee has reviewed the paper or the formalization.
 
 alignment:
@@ -129,6 +131,14 @@ alignment:
   statements:
     - source: "Section 3.3, H_a and the 2^a-th and 2^(a-1)-th power residues"
       lean: "BandParityTower.Ha_spec"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 2.1 (1), classical input: integrality of the coset sums and B_{1,chi} = k + i t"
+      lean: "BandParityTower.coordinates_exact"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 3.5 at p = 5 (mod 8)"
+      lean: "BandParityTower.lag_identity_level_four"
       module: "Challenge"
       status: "proved"
     - source: "Theorem 4.3, the cyclotomic tower"
@@ -151,6 +161,10 @@ alignment:
       status: "proved"
     - source: "Corollary 4.6, the level a = 3"
       lean: "BandParityTower.imaginary_law_three"
+      module: "Challenge"
+      status: "proved"
+    - source: "Corollary 4.6 (a = 2) and e_2 = e"
+      lean: "BandParityTower.imaginary_law_two"
       module: "Challenge"
       status: "proved"
     - source: "Corollary 4.7, the collapse"
@@ -191,6 +205,10 @@ alignment:
       module: "Challenge"
       status: "proved"
       note: "Stated for any finite set on which squaring is a bijection."
+    - source: "Proposition 5.6 (1) for O = H_a"
+      lean: "BandParityTower.squaring_on_H"
+      module: "Challenge"
+      status: "proved"
     - source: "Proposition 5.6 (2), the cycle of a cube root of unity"
       lean: "BandParityTower.cube_root_cycle"
       module: "Challenge"

@@ -70,9 +70,13 @@ nanoda and con-ron.
   states it at `p ≡ 5 (mod 8)`.
 - Proposition 5.6 (1) is proved for any finite set on which squaring is a bijection, so in
   particular for each squaring cycle.
+- The character expansion of Proposition 3.5 for a general coset is not formalized; its two
+  evaluations at `p ≡ 5 (mod 8)` and its value at `c = 2` for every `p ≡ 1 (mod 4)` are.
 - The witness propositions (Proposition 3.9, completeness modulo 4, and Proposition 5.4, no
   refinement modulo 8) are finite computations and are not formalized; neither are the
-  observations.
+  observations, nor the side claims of Remarks 4.2, 4.10, 5.10 and 5.11.
+- `fifth_interval_formula` states explicitly that `R` and `I` are integers, which the paper
+  leaves implicit.
 
 ## Sources and novelty
 
@@ -93,7 +97,7 @@ parity). The code is released under the Apache License 2.0 (`LICENSE`); the pape
 ## Layout for the Palomar registry
 
 - `Challenge.lean` is the statement surface to audit. It restates the definitions exactly as the
-  development has them and states the 24 results with `sorry`.
+  development has them and states the 28 results with `sorry`.
 - `Solution.lean` proves the same declarations from the development in `BandParityTower/`.
 - `comparator.json` lists the compared theorems and definitions and the permitted axioms.
 - `formalization.yaml` records authorship, sources, AI assistance, scope and fidelity.
@@ -107,13 +111,15 @@ ruby scripts/validate-formalization.rb
 
 | Paper I | Challenge declaration |
 |---|---|
+| Proposition 2.1 (1) (classical input) | `coordinates_exact` |
 | Section 3.3, `H_a` and power residues | `Ha_spec` |
+| Proposition 3.5 at `p ≡ 5 (mod 8)` | `lag_identity_level_four` |
 | Proposition 3.5 at `c = 2` | `doubling_count` |
 | Theorem 4.1 | `power_map_family` |
 | Theorem 4.3 | `cyclotomic_tower` |
 | Corollary 4.4 | `band_parity_tower` |
 | Theorem 4.5 | `imaginary_law` |
-| Corollary 4.6 (`a = 3`) | `imaginary_law_three` |
+| Corollary 4.6 | `imaginary_law_two` (with `e_2 = e`), `imaginary_law_three` |
 | Corollary 4.7 | `collapse_criterion` |
 | E. Lehmer 1977, Theorem 5 (Remark 4.8) | `lehmer_theorem_five` |
 | Theorem 4.9 | `companion_law_one_mod_eight` |
@@ -121,7 +127,7 @@ ruby scripts/validate-formalization.rb
 | Corollary 5.1 | `joint_parity_form`, `real_part_eq_fTower` |
 | Lemma 5.2 | `hminus_mod_eight` |
 | Proposition 5.3 | `mod_eight_dichotomy` |
-| Proposition 5.6 | `squaring_cycles`, `cube_root_cycle`, `e_as_correlation`, `order_three_pair` |
+| Proposition 5.6 | `squaring_cycles`, `squaring_on_H`, `cube_root_cycle`, `e_as_correlation`, `order_three_pair` |
 | Lemma 5.7 | `multiplier_identity`, `multiplier_count_sum`, `defect_congruence` |
 | Proposition 5.8 | `odd_multipliers` |
 | Theorem 5.9 | `fifth_interval_formula` |
@@ -145,3 +151,4 @@ ruby scripts/validate-formalization.rb
 | `Cycles` | Proposition 5.6 |
 | `Defect` | Lemma 5.7, Proposition 5.8 |
 | `Fifth` | Theorem 5.9 |
+| `Extras` | level two, Proposition 3.5 at `p ≡ 5 (mod 8)`, squaring on `H_a` |

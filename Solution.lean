@@ -38,6 +38,22 @@ theorem Ha_spec (hp2 : p ≠ 2) :
     · subst hx; simp [zero_not_mem_Ha]
     · rw [pm_Ha_iff hp2, ← exists_pow_pred_iff ha hx]; simp [hx]
 
+/-- **Proposition 2.1 (1), classical input.** For a quartic character and `p > 5`, every coset sum
+`∑_{χ(n) = z} n` is divisible by `p`, so the divisions in `S`, `k`, `t` are exact, and
+`∑ χ(n) n = p (k + i t)`, that is, `B_{1,χ} = k + i t`. -/
+theorem coordinates_exact (hp5 : 5 < p) {χ : MulChar (ZMod p) GaussianInt} (hχ : orderOf χ = 4) :
+    (∀ z : GaussianInt, (p : ℤ) ∣ cosetSum χ z) ∧
+      T χ = (p : GaussianInt) * ((k χ : GaussianInt) + gi * (t χ)) :=
+  ⟨fun z => p_dvd_cosetSum hχ hp5 z, T_eq' hχ hp5⟩
+
+/-- **Proposition 3.5 at `p ≡ 5 (mod 8)`.** `∑_{u ∈ H} s(u) s(2u) = -κ` and
+`∑_{u ∈ 2H} s(u) s(2u) = κ`. (The character expansion for a general coset `cH_a` is not
+formalized.) -/
+theorem lag_identity_level_four (hp8 : p % 8 = 5) :
+    ∑ u ∈ Ha p, parSign u * parSign (2 * u) = -kappa p ∧
+      ∑ u ∈ cosetOf 2 (Ha p), parSign u * parSign (2 * u) = kappa p :=
+  ⟨lag_H hp8, lag_2H hp8⟩
+
 
 /-! ### Section 4: the tower -/
 
@@ -92,6 +108,13 @@ theorem imaginary_law_three (hp16 : p % 16 = 9) {χ : MulChar (ZMod p) GaussianI
         [ZMOD 8] :=
   elaw_three hp16 hχ
 
+/-- **Corollary 4.6, level two, and `e_2 = e`.** For `p ≡ 5 (mod 8)` and `χ(2) = i`:
+`Im 𝒞 = e_2`, `2N_2 = Q + κ`, and Theorem 4.5 at `a = 2` reads `e ≡ κ (mod 4)`. -/
+theorem imaginary_law_two (hp8 : p % 8 = 5) {χ : MulChar (ZMod p) GaussianInt} (hχ : orderOf χ = 4)
+    (hpin : χ 2 = gi) :
+    (bandSum χ).im = eTower p ∧ 2 * (Na p : ℤ) = Q p + kappa p ∧ eTower p ≡ kappa p [ZMOD 4] :=
+  ⟨im_eq_eTower hp8 hχ hpin, two_Na_eq hp8, imaginary_law_two' hp8⟩
+
 /-- **Corollary 4.7 (the collapse).** For `p ≡ 1 (mod 4)`, if `2` is a `2^{a-1}`-th power residue,
 then `e_a = f_a` if `2 ∈ H_a` and `e_a = -f_a` otherwise, and `2` is a `2^a`-th power residue iff
 `N_a` is odd. The last statement is E. Lehmer's Theorem 5 at `k = 2^{a-1}`
@@ -110,15 +133,15 @@ theorem lehmer_theorem_five {k : ℕ} (hk : 2 * k ∣ p - 1) (h2 : ∃ y : ZMod 
   lehmer_criterion hk h2
 
 /-- **Theorem 4.1 (the power-map family).** For `p ≡ 5 (mod 8)`, the quartic character with
-`χ(2) = i`, `m ≥ 1`, `d = gcd(m, Q)` and `Θ_d = (-1)^{α(H) + α(H^d)}`:
-`Re 𝒞_{2m} ≡ Q + 1 - Θ_d` and `Im 𝒞_{2m} ≡ (-1)^{m-1} (κ + 1 - Θ_d) (mod 4)`. -/
+`χ(2) = i`, `j ≥ 1`, `d = gcd(j, Q)` and `Θ_d = (-1)^{α(H) + α(H^d)}`:
+`Re 𝒞_{2j} ≡ Q + 1 - Θ_d` and `Im 𝒞_{2j} ≡ (-1)^{j-1} (κ + 1 - Θ_d) (mod 4)`. -/
 theorem power_map_family (hp8 : p % 8 = 5) {χ : MulChar (ZMod p) GaussianInt}
-    (hχ : orderOf χ = 4) (hpin : χ 2 = gi) {m : ℕ} (hm : 1 ≤ m) :
-    (bandSumPow χ (2 * m)).re ≡ Q p + 1 - (-1) ^ (oddCountZ (Ha p) +
-        oddCountZ ((Ha p).image (· ^ Nat.gcd m ((p - 1) / 4)))) [ZMOD 4] ∧
-      (bandSumPow χ (2 * m)).im ≡ (-1) ^ (m - 1) * (kappa p + 1 - (-1) ^ (oddCountZ (Ha p) +
-        oddCountZ ((Ha p).image (· ^ Nat.gcd m ((p - 1) / 4))))) [ZMOD 4] :=
-  power_map_family' hp8 hχ hpin hm
+    (hχ : orderOf χ = 4) (hpin : χ 2 = gi) {j : ℕ} (hj : 1 ≤ j) :
+    (bandSumPow χ (2 * j)).re ≡ Q p + 1 - (-1) ^ (oddCountZ (Ha p) +
+        oddCountZ ((Ha p).image (· ^ Nat.gcd j ((p - 1) / 4)))) [ZMOD 4] ∧
+      (bandSumPow χ (2 * j)).im ≡ (-1) ^ (j - 1) * (kappa p + 1 - (-1) ^ (oddCountZ (Ha p) +
+        oddCountZ ((Ha p).image (· ^ Nat.gcd j ((p - 1) / 4))))) [ZMOD 4] :=
+  power_map_family' hp8 hχ hpin hj
 
 /-- **Theorem 4.9 (the companion law at `p ≡ 1 (mod 8)`).** For either quartic character,
 `Re 𝒞 ≡ Im 𝒞 ≡ κ (mod 4)`. (With `κ = h(-4p)/2` and Barrucand and Cohn, `𝒞 ≡ 0 (mod 4)` iff
@@ -183,6 +206,14 @@ theorem squaring_cycles {O : Finset (ZMod p)}
       ∑ u ∈ O, parSign u * parSign (u ^ 2) ≡ O.card [ZMOD 4] :=
   squaring_cycle' hO
 
+/-- **Proposition 5.6 (1) for `O = H_a`.** Squaring permutes `H_a`, and `f_a = m - 2 r_H` with
+`r_H` the number of sign changes, which is even. -/
+theorem squaring_on_H (hp2 : p ≠ 2) :
+    Set.BijOn (fun x : ZMod p => x ^ 2) (Ha p : Set (ZMod p)) (Ha p : Set (ZMod p)) ∧
+      fTower p = oddPart p - 2 * ((Ha p).filter fun u => parSign u ≠ parSign (u ^ 2)).card ∧
+      Even ((Ha p).filter fun u => parSign u ≠ parSign (u ^ 2)).card :=
+  fTower_eq_cycles hp2
+
 /-- **Proposition 5.6 (2).** For a primitive cube root of unity `ω`, the cycle `{ω, ω²}`
 contributes exactly `2`. -/
 theorem cube_root_cycle (hp2 : p ≠ 2) {ω : ZMod p} (hω : ω ^ 3 = 1) (hω1 : ω ≠ 1) :
@@ -236,7 +267,7 @@ theorem odd_multipliers (hp8 : p % 8 = 5) {a : ℕ} (ha : Odd a) (hpa : ¬ p ∣
 
 /-- **Theorem 5.9 (the fifth-interval formula).** Let `p ≡ 29 (mod 40)`, `v = (p + 1)/5`, `R_5(p)`
 the number of quadratic residues in `(p/5, 2p/5)`, `θ_p = (·/p) ξ` with `ξ` the quartic character
-modulo `5` with `ξ(2) = i`, and `B_{1,θ_p} = R + i I`. Then `R`, `I` are integers,
+modulo `5` with `ξ(2) = i`, and `B_{1,θ_p} = R + i I`. Then `R`, `I` are integers (stated explicitly here),
 `R_5 = (2v + I - R)/4`, `M_H(5) = Q - v + (R - I)/2`; `5 ∈ H` iff `R - I ≡ 2v (mod 8)`; and then the
 pair `{5, 5⁻¹}` contributes `4` modulo `8` to the sum of Lemma 5.7 iff `R - I ≡ 2v - 8 (mod 16)`. -/
 theorem fifth_interval_formula (hp40 : p % 40 = 29) :
