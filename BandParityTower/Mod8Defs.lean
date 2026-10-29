@@ -43,7 +43,7 @@ def xi5 (n : ℕ) : GaussianInt :=
   else if n % 5 = 4 then -1 else 0
 
 /-- `5p B_{1,θ_p} = ∑_{0 ≤ n < 5p} θ_p(n) n` with `θ_p(n) = (n/p) ξ(n)`. -/
-def thetaSum (p : ℕ) : GaussianInt :=
+def thetaSum (p : ℕ) [Fact p.Prime] : GaussianInt :=
   ∑ n ∈ range (5 * p), ((legendreSym p n : ℤ) : GaussianInt) * xi5 n * (n : GaussianInt)
 
 /-- `R_5(p)`: the number of quadratic residues in `(p/5, 2p/5)`. -/
