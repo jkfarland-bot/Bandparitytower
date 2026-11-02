@@ -64,8 +64,15 @@ sources:
       - "E. Lehmer"
     type: "article"
     location: "Number Theory and Algebra (H. Zassenhaus, ed.), Academic Press, New York, 1977, 187-194"
-    relationship: "background"
-    note: "Theorem 5 is formalized here as lehmer_theorem_five; Theorem 4 is the parity form of the doubling count."
+    relationship: "formalizes"
+    note: >-
+      Formalized for Theorem 5 only: E. Lehmer's criterion for 2 to be a 2k-th power residue is
+      lehmer_theorem_five (Remark 4.8 of the companion paper). This is a classical result of
+      Lehmer, formalized here as an input; it is not a result of the companion paper, and the
+      residuacity half of Corollary 4.7 is its case k = 2^(a-1). The rest of the paper is
+      background: Theorem 4 is the parity form of the doubling count, which the companion paper
+      proves in its own form (Proposition 3.5 at c = 2, doubling_count). The endorsement is n/a because
+      the author died in 2007.
     license: "unknown"
     author_endorsement: "n/a"
   - title: "Quadratic residues and related permutations and identities"
