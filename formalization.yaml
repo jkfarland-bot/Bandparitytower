@@ -141,7 +141,8 @@ review:
     - "Joseph S. Farland"
   notes: >-
     The definitions in Challenge.lean are copied verbatim from the development and compared by
-    Comparator. The statements were checked against the paper by an independent AI review, which
+    Comparator, bodies included: comparator.json lists no definition holes (earlier
+    releases listed the definitions as holes, so only their names and types were compared). The statements were checked against the paper by an independent AI review, which
     found no mismatch; its suggested additions (level two, Proposition 3.5 at p = 5 (mod 8),
     squaring on H_a, the exactness of the coset sums) are included. No
     external referee has reviewed the paper or the formalization.
