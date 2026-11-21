@@ -109,7 +109,10 @@ parity). The code is released under the Apache License 2.0 (`LICENSE`); the pape
 - `Challenge.lean` is the statement surface to audit. It restates the definitions exactly as the
   development has them and states the 28 results with `sorry`.
 - `Solution.lean` proves the same declarations from the development in `BandParityTower/`.
-- `comparator.json` lists the compared theorems and definitions and the permitted axioms.
+- `comparator.json` lists the compared theorems and the permitted axioms. Its `definition_names`
+  is empty, so Comparator compares every definition the statements use with the development's,
+  bodies included (earlier releases listed the definitions as holes, which compares only their
+  names and types).
 - `formalization.yaml` records authorship, sources, AI assistance, scope and fidelity.
 - `scripts/` holds Palomar's checks, copied from the Palomar starter template.
 
