@@ -385,8 +385,13 @@ theorem odd_multipliers (hp8 : p % 8 = 5) {a : ℕ} (ha : Odd a) (hpa : ¬ p ∣
 /-- **Theorem 5.9 (the fifth-interval formula).** Let `p ≡ 29 (mod 40)`, `v = (p + 1)/5`, `R_5(p)`
 the number of quadratic residues in `(p/5, 2p/5)`, `θ_p = (·/p) ξ` with `ξ` the quartic character
 modulo `5` with `ξ(2) = i`, and `B_{1,θ_p} = R + i I`. Then `R`, `I` are integers (stated explicitly here),
-`R_5 = (2v + I - R)/4`, `M_H(5) = Q - v + (R - I)/2`; `5 ∈ H` iff `R - I ≡ 2v (mod 8)`; and then the
-pair `{5, 5⁻¹}` contributes `4` modulo `8` to the sum of Lemma 5.7 iff `R - I ≡ 2v - 8 (mod 16)`. -/
+`R_5 = (2v + I - R)/4`, `M_H(5) = Q - v + (R - I)/2`; `5 ∈ H` iff `R - I ≡ 2v (mod 8)`; and
+then the single summand `d(5)(M_H(5) - Q)` at `a = 5` is `4` modulo `8` iff
+`R - I ≡ 2v - 8 (mod 16)`. This summand is the contribution of the pair `{5, 5⁻¹}` to the
+paper's undoubled sum `f ≡ Q + ∑_{{a, a⁻¹}} d(a)(M_H(a) - Q) (mod 8)` of Lemma 5.7. The sum in
+`defect_congruence` counts each pair from both ends (and `m = Q` here), so there the pair
+contributes twice this summand, which is `8` modulo `16` exactly when the summand is `4`
+modulo `8`. -/
 theorem fifth_interval_formula (hp40 : p % 40 = 29) :
     ((5 * p : ℕ) : ℤ) ∣ (thetaSum p).re ∧ ((5 * p : ℕ) : ℤ) ∣ (thetaSum p).im ∧
       4 * (fifthCount p : ℤ) = 2 * ((p + 1) / 5 : ℕ) + (thetaSum p).im / (5 * p : ℕ) -

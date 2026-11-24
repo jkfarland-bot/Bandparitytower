@@ -87,6 +87,9 @@ nanoda and con-ron.
   observations, nor the side claims of Remarks 4.2, 4.10, 5.10 and 5.11.
 - `fifth_interval_formula` states explicitly that `R` and `I` are integers, which the paper
   leaves implicit.
+- The last clause of `fifth_interval_formula` tests the single summand `d(5)(M_H(5) - Q)` at
+  `a = 5`. This is the contribution of the pair `{5, 5⁻¹}` to the paper's undoubled sum in
+  Lemma 5.7; in the doubled sum of `defect_congruence` the pair contributes twice the summand.
 
 ## Sources and novelty
 
