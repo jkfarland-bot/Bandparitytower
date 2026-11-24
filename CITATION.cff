@@ -4,9 +4,9 @@ title: "BandParityTower: a Lean 4 formalization of the band-parity tower and its
 authors:
   - family-names: Farland
     given-names: Joseph S.
-version: v1.1.1
+version: v1.1.2
 doi: 10.5281/zenodo.23752170
-date-released: 2026-11-20
+date-released: 2026-11-23
 license: Apache-2.0
 repository-code: "https://github.com/jkfarland-bot/Bandparitytower"
 keywords:

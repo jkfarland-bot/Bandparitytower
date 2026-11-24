@@ -267,5 +267,6 @@ alignment:
       lean: "BandParityTower.fifth_interval_formula"
       module: "Challenge"
       status: "proved"
+      note: "R and I are stated to be integers. The last clause tests the single summand d(5)(M_H(5) - Q) at a = 5, which is the contribution of the pair {5, 5^-1} to the paper's undoubled sum in Lemma 5.7; in the doubled sum of defect_congruence the pair contributes twice the summand."
 
 acknowledgements: "Lean 4 and Mathlib; Claude (Anthropic) for formalization assistance; the Palomar starter template for the check scripts."
