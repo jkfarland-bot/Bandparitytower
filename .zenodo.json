@@ -1,0 +1,42 @@
+{
+  "title": "BandParityTower: a Lean 4 formalization of the band-parity tower and its limit modulo eight",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Farland, Joseph S.",
+      "orcid": "0009-0007-6809-804X"
+    }
+  ],
+  "license": "Apache-2.0",
+  "keywords": [
+    "quartic characters",
+    "power residues",
+    "Gauss's lemma",
+    "class numbers",
+    "Lean 4",
+    "Mathlib",
+    "formal verification"
+  ],
+  "description": "<p>Lean 4 / Mathlib formalization accompanying J. S. Farland, \"The band-parity tower and its limit modulo eight, formalized in Lean\" (doi:10.5281/zenodo.23752472). It covers: the cyclotomic tower and the band-parity tower f_a ≡ m (mod 4) at every odd prime; the doubling count, the imaginary law e_a ≡ 2N_a - m (mod 4) and its forms at levels two and three; the collapse, and E. Lehmer's criterion for 2 to be a 2k-th power residue; the power-map family, the companion law at p ≡ 1 (mod 8), and Lehmer-type invariants of the inversion map; modulo 8: the joint-parity form, the dichotomy, squaring cycles, the defect lemma, odd multipliers, and the fifth-interval formula.</p>\n<p>The statements are in Challenge.lean. Lean's comparator checks them against the proofs, with the definition bodies compared, and the proofs are replayed in the Lean, nanoda and con-ron kernels. No sorry, no native_decide; standard axioms only. The changes in each version are described in the release notes on GitHub: <a href=\"https://github.com/jkfarland-bot/Bandparitytower/releases\">github.com/jkfarland-bot/Bandparitytower/releases</a>.</p>",
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.23752472",
+      "relation": "isSupplementTo",
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "https://github.com/jkfarland-bot/Bandparitytower",
+      "relation": "isSupplementTo",
+      "scheme": "url",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "10.5281/zenodo.23673067",
+      "relation": "continues",
+      "scheme": "doi",
+      "resource_type": "software"
+    }
+  ],
+  "notes": "AI assistance: the Lean code in this record was drafted and repaired by Claude (Anthropic), an AI model, from the statements and proofs of the companion paper \"The band-parity tower and its limit modulo eight, formalized in Lean\" (doi:10.5281/zenodo.23752472), and compiled locally with lake. Every proof is checked by the Lean kernel, and Comparator replays the solution against the statement file under the Lean, NanoDa and con-ron kernels. The author, Joseph S. Farland, chose the scope, directed the work, and is responsible for the contents. No external human reviewer has checked the formalization."
+}
